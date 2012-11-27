@@ -25,6 +25,6 @@ oauth_endpoint <- function(request = NULL, authorize, access, base_url = NULL, p
       access = modify_url(base_url, path = file.path(path, access))
     )
   } else {
-    list(request = request, authorize = authorize, access = access)
+    list(request = request, authorize = authorize, access = access, permission=permission)
   }
 }
