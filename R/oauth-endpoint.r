@@ -16,15 +16,15 @@
 #' facebook <- oauth_endpoint(
 #'   authorize = "https://www.facebook.com/dialog/oauth",
 #'   access = "https://graph.facebook.com/oauth/access_token")
-oauth_endpoint <- function(request = NULL, authorize, access, base_url = NULL, permission = NULL) {
+oauth_endpoint <- function(request = NULL, authorize, access, base_url = NULL, scope = NULL) {
   if (!is.null(base_url)) {
     path <- parse_url(base_url)$path
     list(
-      request = modify_url(base_url, path = file.path(path, request), scope = permission),
+      request = modify_url(base_url, path = file.path(path, request), scope = scope),
       authorize = modify_url(base_url, path = file.path(path, authorize)),
       access = modify_url(base_url, path = file.path(path, access))
     )
   } else {
-    list(request = request, authorize = authorize, access = access, scope = permission)
+    list(request = request, authorize = authorize, access = access, scope = scope)
   }
 }
