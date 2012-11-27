@@ -20,7 +20,8 @@ oauth1.0_token <- function(endpoint, app, permission = NULL) {
   # 2. Authorise the token
   authorise <- modify_url(endpoint$authorize, query = list(
     oauth_token = token,
-    permission = "read"))
+    permission = ifelse(test=is.null(permission), yes="read", no=permission) 
+  ))
   verifier <- oauth_listener(authorise)$oauth_verifier
 
   # 3. Request access token
